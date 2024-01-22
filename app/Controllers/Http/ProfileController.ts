@@ -15,7 +15,7 @@ export default class ProfileController {
 
       return response.json({ success: true, message: "Profile created successfully" });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({success: false, message: error.message });
@@ -39,7 +39,7 @@ export default class ProfileController {
 
       return response.json({ success: true, message: "Profile updated successfully" });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({ success: false, message: error.message });
@@ -67,7 +67,7 @@ export default class ProfileController {
         }
       });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({ success: false, message: error.message });
@@ -78,9 +78,11 @@ export default class ProfileController {
 
   public async destroy({ auth, response }: HttpContextContract) {
     try {
-      const user = await auth.use("api").authenticate();
+      const user : any = await auth.use("api").authenticate();
 
       if (!user) throw new Error("Unauthorized");
+
+      await user.token?.revoke();
 
       await user.load("profile");
 
@@ -96,7 +98,7 @@ export default class ProfileController {
         message: "Profile and user deleted successfully",
       });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({ success: false, message: error.message });

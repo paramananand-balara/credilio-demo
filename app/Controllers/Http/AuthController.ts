@@ -16,7 +16,7 @@ export default class AuthController {
 
       return response.json({ success : true, token });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({success : false,  message: error.message });
@@ -41,7 +41,7 @@ export default class AuthController {
 
       return response.json({ success : true, token });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({ success : false, message: error.message });
@@ -56,7 +56,7 @@ export default class AuthController {
 
       return response.json({ success : true, message: "Logout successful" });
     } catch (error) {
-      console.error(error);
+      
 
       if (error.message) {
         return response.status(400).json({ success : false, message: error.message });
