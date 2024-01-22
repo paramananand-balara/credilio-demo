@@ -7,6 +7,7 @@ Route.get('/', async () => {
  
 Route.post('/register/', 'AuthController.register').as('auth.register')
 Route.post('/login/', 'AuthController.login').as('auth.login')
+Route.post('/logout/', 'AuthController.logout')
 
  Route.post("/user/profile", "ProfileController.create");
  Route.put("/user/profile", "ProfileController.update");
