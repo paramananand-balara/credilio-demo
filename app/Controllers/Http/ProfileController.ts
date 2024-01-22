@@ -5,7 +5,7 @@ import ProfileValidator from "App/Validators/ProfileValidator";
 export default class ProfileController {
   public async create({ request, auth, response }: HttpContextContract) {
     try {
-      const data = await request.validate(ProfileValidator);
+      const data : any = await request.validate(ProfileValidator);
 
       const user = await auth.use("api").authenticate();
       await user.load("profile");
@@ -27,7 +27,7 @@ export default class ProfileController {
   public async update({ auth, request, response }: HttpContextContract) {
     try {
       const user = await auth.use("api").authenticate();
-      const data = await request.validate(ProfileValidator);
+      const data : any = await request.validate(ProfileValidator);
 
       await user?.load("profile");
 
