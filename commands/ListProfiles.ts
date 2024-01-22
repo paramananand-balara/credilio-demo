@@ -3,9 +3,6 @@ import Profile from 'App/Models/Profile'
 
 
 export default class ListProfiles extends BaseCommand {
-  /**
-   * Command name is used to run the command
-   */
   public static commandName = 'list:profiles'
   public static description = 'List all Profiles'
 
