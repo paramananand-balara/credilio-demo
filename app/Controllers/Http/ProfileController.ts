@@ -13,14 +13,14 @@ export default class ProfileController {
 
       await Profile.create(data);
 
-      return response.json({ message: "Profile created successfully" });
+      return response.json({ success: true, message: "Profile created successfully" });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({success: false, message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success: false, message: "Internal Server Error" });
     }
   }
 
@@ -37,14 +37,14 @@ export default class ProfileController {
       profile.merge(data);
       await profile.save();
 
-      return response.json({ message: "Profile updated successfully" });
+      return response.json({ success: true, message: "Profile updated successfully" });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({ success: false, message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success: false, message: "Internal Server Error" });
     }
   }
 
@@ -60,17 +60,19 @@ export default class ProfileController {
 
       if (!profile) throw new Error("Profile not found");
       return response.json({
-        name: profile.name,
-        gender: profile.gender,
-        dateOfBirth: profile.dateOfBirth,
+        success: true, data: {
+          name: profile.name,
+          gender: profile.gender,
+          dateOfBirth: profile.dateOfBirth,
+        }
       });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({ success: false, message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success: false, message: "Internal Server Error" });
     }
   }
 
@@ -90,16 +92,16 @@ export default class ProfileController {
 
       await user.delete();
 
-      return response.json({
+      return response.json({ success: true, 
         message: "Profile and user deleted successfully",
       });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({ success: false, message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success: false, message: "Internal Server Error" });
     }
   }
 }

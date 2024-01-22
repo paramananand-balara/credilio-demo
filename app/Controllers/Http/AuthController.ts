@@ -14,14 +14,14 @@ export default class AuthController {
       const user = await User.create(data);
       const token = await auth.use("api").generate(user);
 
-      return response.json({ token });
+      return response.json({ success : true, token });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({success : false,  message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success : false, message: "Internal Server Error" });
     }
   }
 
@@ -39,14 +39,14 @@ export default class AuthController {
 
       const token = await auth.use("api").generate(user);
 
-      return response.json({ token });
+      return response.json({ success : true, token });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({ success : false, message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success : false, message: "Internal Server Error" });
     }
   }
 
@@ -54,14 +54,14 @@ export default class AuthController {
     try {
       await auth.logout();
 
-      return response.json({ message: "Logout successful" });
+      return response.json({ success : true, message: "Logout successful" });
     } catch (error) {
       console.error(error);
 
       if (error.message) {
-        return response.status(400).json({ message: error.message });
+        return response.status(400).json({ success : false, message: error.message });
       }
-      return response.status(500).json({ message: "Internal Server Error" });
+      return response.status(500).json({ success : false, message: "Internal Server Error" });
     }
   }
 }
