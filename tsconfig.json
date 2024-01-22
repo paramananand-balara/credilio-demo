@@ -27,7 +27,6 @@
     },
     "types": [
       "@adonisjs/core",
-      "@adonisjs/repl",
       "@adonisjs/lucid",
       "@adonisjs/auth",
     ]

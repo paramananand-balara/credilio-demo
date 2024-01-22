@@ -9,20 +9,19 @@ export default class ProfileController {
 
       const user = await auth.use("api").authenticate();
       await user.load("profile");
+      
       if (user?.profile) throw new Error("Profile is already available");
 
-      await Profile.create(data);
+      await Profile.create({ ...data, userId: user.id });
 
       return response.json({ success: true, message: "Profile created successfully" });
     } catch (error) {
-      
-
       if (error.message) {
         return response.status(400).json({success: false, message: error.message });
       }
       return response.status(500).json({ success: false, message: "Internal Server Error" });
     }
-  }
+}
 
   public async update({ auth, request, response }: HttpContextContract) {
     try {
