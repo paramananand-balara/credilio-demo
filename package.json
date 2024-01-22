@@ -17,15 +17,16 @@
     "youch-terminal": "^1.1.1"
   },
   "dependencies": {
+    "@adonisjs/ace": "^13.0.0",
     "@adonisjs/auth": "^8.0.9",
     "@adonisjs/core": "^5.3.4",
-    "@adonisjs/lucid": "^16.0.2",
+    "@adonisjs/lucid": "^18.4.2",
     "luxon": "^2.0.2",
     "pg": "^8.7.1",
     "phc-argon2": "^1.1.4",
     "phc-bcrypt": "^1.0.7",
     "proxy-addr": "^2.0.7",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.1.14",
     "source-map-support": "^0.5.20"
   }
 }
